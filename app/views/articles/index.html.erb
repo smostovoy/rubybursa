@@ -1,4 +1,8 @@
-<p style="border: solid 2px red">
-  <%= some_helper %>
-  <%= params %>
-</p>
+<table style="border: solid 2px red">
+  <% @articles.each_with_index do |article, index| %>
+    <tr>
+      <td><%= index %></td>
+      <td><%= article.title %></td>
+    </tr>
+  <% end %>
+</table>
