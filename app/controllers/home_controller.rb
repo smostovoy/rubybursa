@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    render text: 'Hello'
+    redirect_to articles_path
   end
 
 end

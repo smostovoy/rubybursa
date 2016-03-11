@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   def create
     article = Article.create(article_params)
+    Pusher.trigger('main', 'article_created', 'PUSHER!')
     redirect_to article_path(article), notice: 'Article created!'
   end
 
