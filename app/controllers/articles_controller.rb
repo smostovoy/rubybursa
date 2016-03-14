@@ -21,7 +21,11 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    article = Article.create(article_params)
+    article = Article.create(article_params.merge({user: User.last}))
+    UserMailer.article_created(article).deliver_later
+    ArticleCheckerJob.perform_later
+    Rails.logger.info 'After mailer'
+
     Pusher.trigger('main', 'article_created', 'PUSHER!')
     redirect_to article_path(article), notice: 'Article created!'
   end
