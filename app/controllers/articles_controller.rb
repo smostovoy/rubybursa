@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  # before_action :authorize_user
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /articles
   def index
